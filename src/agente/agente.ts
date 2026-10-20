@@ -26,6 +26,8 @@ export interface ResultadoAgente {
   citasNoEncontradas: string[];
   bitacora: Contexto["bitacora"];
   iteraciones: number;
+  // Tokens sumados de todas las vueltas, para saber cuánto costó el estudio.
+  tokens: { entrada: number; salida: number; cacheLeida: number; cacheEscrita: number };
 }
 
 const CARACTERES_POR_PAGINA_TXT = 4000;
@@ -129,15 +131,20 @@ export async function correrAgente(compra: Compra, datos: Datos, op: OpcionesAge
   let iteraciones = 0;
   let ultimo: Anthropic.Beta.BetaMessage | null = null;
   let visto = 0;
+  const tokens = { entrada: 0, salida: 0, cacheLeida: 0, cacheEscrita: 0 };
   for await (const mensaje of runner) {
     iteraciones++;
     ultimo = mensaje;
+    tokens.entrada += mensaje.usage.input_tokens;
+    tokens.salida += mensaje.usage.output_tokens;
+    tokens.cacheLeida += mensaje.usage.cache_read_input_tokens ?? 0;
+    tokens.cacheEscrita += mensaje.usage.cache_creation_input_tokens ?? 0;
     if (mensaje.stop_reason === "refusal") throw new Error("El modelo declinó la solicitud; la compra queda para revisión humana.");
     if (mensaje.stop_reason === "max_tokens") throw new Error("Una respuesta del agente se cortó por largo (max_tokens).");
-    for (const b of mensaje.content) if (b.type === "tool_use") op.alAvanzar?.(`  -> ${b.name}`);
-    // Lo que devolvieron las herramientas de la vuelta anterior, para seguir el trabajo.
-    for (const e of ctx.bitacora.slice(visto)) if (e.error) op.alAvanzar?.(`     (rechazada: ${e.salida.slice(0, 120)})`);
+    // Primero lo que pasó con las herramientas de la vuelta anterior, después lo que pide ahora.
+    for (const e of ctx.bitacora.slice(visto)) if (e.error) op.alAvanzar?.(`     (${e.herramienta} rechazada: ${e.salida.slice(0, 120)})`);
     visto = ctx.bitacora.length;
+    for (const b of mensaje.content) if (b.type === "tool_use") op.alAvanzar?.(`  -> ${b.name}`);
   }
   if (!ctx.informe || !ctx.evaluacion || !ctx.requisitos) {
     const motivo = iteraciones >= (op.maxIteraciones ?? 40) ? "llegó al tope de iteraciones" : `se detuvo (${ultimo?.stop_reason ?? "sin respuesta"})`;
@@ -151,5 +158,6 @@ export async function correrAgente(compra: Compra, datos: Datos, op: OpcionesAge
     citasNoEncontradas: ctx.citasNoEncontradas,
     bitacora: ctx.bitacora,
     iteraciones,
+    tokens,
   };
 }

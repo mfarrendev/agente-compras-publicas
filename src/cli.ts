@@ -26,6 +26,7 @@ import { costear } from "./agentes/economico.js";
 import { armar } from "./agentes/postulacion.js";
 import { correrAgente, type ResultadoAgente } from "./agente/agente.js";
 import { OCDS } from "./fuentes/ocds.js";
+import { PRECIO_USD } from "./llm.js";
 import { Compra, type Evaluacion, type Oferta, type Requisitos } from "./tipos.js";
 
 function opcion(nombre: string, porDefecto: string): string {
@@ -107,7 +108,10 @@ function informeMd(c: Compra, r: ResultadoAgente): string {
   if (r.informe.riesgosAdicionales.length) l.push("## Riesgos que vio al leer", "", ...r.informe.riesgosAdicionales.map((x) => `- ${x}`), "");
   if (r.informe.preguntasParaRevisar.length) l.push("## Para revisar a mano", "", ...r.informe.preguntasParaRevisar.map((x) => `- ${x}`), "");
   if (r.citasNoEncontradas.length) l.push("## Citas que no aparecen literales en las bases", "", ...r.citasNoEncontradas.map((x) => `- ${x}`), "");
+  const t = r.tokens;
   l.push(`## Cómo trabajó (${r.iteraciones} vueltas, ${r.bitacora.length} herramientas)`, "");
+  const usd = (t.entrada * PRECIO_USD.entrada + t.salida * PRECIO_USD.salida + t.cacheLeida * PRECIO_USD.cacheLeida + t.cacheEscrita * PRECIO_USD.cacheEscrita) / 1e6;
+  l.push(`Tokens: ${t.entrada} de entrada, ${t.cacheLeida} leídos de caché, ${t.cacheEscrita} escritos en caché, ${t.salida} de salida. Costo aproximado: USD ${usd.toFixed(2)}.`, "");
   l.push(...r.bitacora.map((b, i) => `${i + 1}. ${b.herramienta}${b.error ? " (rechazada)" : ""} ${JSON.stringify(b.entrada).slice(0, 140)}`));
   return l.join("\n") + "\n";
 }

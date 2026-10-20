@@ -6,6 +6,8 @@ import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import type { z } from "zod";
 
 export const MODELO = "claude-opus-5-5";
+// USD por millón de tokens de claude-opus-5-5 (escribir en caché cuesta 1,25 veces la entrada).
+export const PRECIO_USD = { entrada: 4, salida: 20, cacheLeida: 0.2, cacheEscrita: 5 };
 
 export type Esfuerzo = "low" | "medium" | "high" | "xhigh" | "max";
 

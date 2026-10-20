@@ -20,23 +20,36 @@ compras se inventaron para la demostración.
 
 Recibe una compra y un conjunto de herramientas, y decide él cómo estudiarla: qué documentos
 leer y en qué orden, qué buscar cuando una cita no calza, a qué licitaciones anteriores del
-mismo comprador mirar. Un estudio podría verse así (ejemplo ilustrativo; la bitácora real de
-cada estudio queda en `informe-agente.md`):
+mismo comprador mirar. Así estudió la licitación de ejemplo LIC-DEMO-004 con el modelo real
+(2026-10-20, 9 vueltas, USD 0,26):
 
 ```text
-CA-2026-123: el agente está estudiando la compra
-  -> listar_documentos            bases.pdf (38 p.), anexo-tecnico.pdf (12 p.)
-  -> leer_documento               bases.pdf, páginas 1 a 9
-  -> leer_documento               anexo-tecnico.pdf
-  -> registrar_requisitos         2 citas no aparecen literales en las bases
-  -> buscar_en_bases              "experiencia mínima de 5 años"
-  -> registrar_requisitos         las 14 citas aparecen literales
-  -> verificar_postulacion        postulable con brechas
-  -> licitaciones_del_comprador   17 licitaciones en 6 meses
-  -> resultado_licitacion         x4, las de capacitación
-  -> costear                      competidor estimado con 3 casos comparables
+LIC-DEMO-004: el agente está estudiando la compra
+  -> listar_documentos
+  -> leer_documento
+  -> registrar_requisitos          las 10 citas aparecen literales en las bases
+  -> verificar_postulacion         postulable con brechas
+  -> ver_equipo
+  -> historial_propio              (por tema: sin casos)
+  -> historial_propio              (por comprador: 2 casos)
+  -> licitaciones_del_comprador
+     (rechazada: No puedo sacar la unidad compradora de "LIC-DEMO-004"; pásala en "unidad".)
+  -> resultado_licitacion
+  -> resultado_licitacion
+  -> costear                       competidor estimado con LIC-HIST-01
   -> entregar_informe
 ```
+
+Los informes completos de los tres estudios reales están en [`ejemplo/estudios/`](ejemplo/estudios/):
+
+| Compra | Veredicto | Lo que hizo el agente | Costo |
+|---|---|---|---|
+| [CA-DEMO-001](ejemplo/estudios/CA-DEMO-001.md) | Postulable | Estimó la competencia con dos compras del mismo municipio y avisó que el costeo asigna como relatora a quien no cumple el perfil | USD 0,21 |
+| [LIC-DEMO-002](ejemplo/estudios/LIC-DEMO-002.md) | No postulable | Citó la cláusula que la deja fuera, no costeó y sugirió entrar como docente de una universidad que postule | USD 0,09 |
+| [LIC-DEMO-004](ejemplo/estudios/LIC-DEMO-004.md) | Con brechas | Notó que un intento anterior del comprador quedó desierto y que no se sabe si el monto del historial incluía IVA | USD 0,26 |
+
+Las compras de ejemplo son ficticias y no tienen código de Mercado Público. Por eso el agente no
+pudo consultar los datos abiertos en estos estudios. Con una licitación real sí puede.
 
 | Herramienta | Qué hace |
 |---|---|
@@ -87,7 +100,7 @@ npm run demo
 - LIC-DEMO-002 calza (67/100) pero NO es postulable: Quedaría inadmisible por: Institucional:
   Universidad acreditada por 4 años o más.
 - LIC-DEMO-004 POSTULABLE CON BRECHAS (100/100). Precio recomendado $ 11.495.798 neto,
-  margen $ 4.391.502.
+  margen $ 2.411.502.
 ```
 
 | Compra | Qué pasa | Por qué |
@@ -164,6 +177,14 @@ npm run agente -- estudiar <id> --datos datos                    # una compra; s
 
 El resultado de cada etapa queda en `salida/<id>/`. Volver a correr no vuelve a llamar a la IA;
 `--rehacer` lo fuerza. `--sin-red` deja al agente sin los datos abiertos.
+
+## Pendiente
+
+- El costeo valoriza las horas por rol genérico (senior, consultor) y no por la persona que la
+  verificación asignó a cada perfil. Lo detectó el propio agente en CA-DEMO-001.
+- Los respaldos (CV, títulos, certificados, órdenes de compra) se declaran como sí o no en los
+  `.yaml`. Falta una carpeta para los PDF, que el agente compruebe que existen y que la carpeta
+  de postulación los adjunte.
 
 ## Desarrollo
 

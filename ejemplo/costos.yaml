@@ -20,3 +20,5 @@ costoFinancieroGarantiaPct: 0.02
 margenMinimoPct: 0.15
 margenObjetivoPct: 0.30
 ivaPct: 0.19
+# Lo que cobraría un experto externo por cubrir un perfil que el equipo no tiene (por perfil).
+honorarioExternoPorPerfilCLP: 1800000

@@ -78,6 +78,8 @@ export const Costos = z.object({
   horasPreparacionPostulacion: z.number(),
   rolPreparacion: z.string(),
   costosDirectosCLP: z.number().default(0),
+  // Honorario de un experto externo que cubre un perfil que el equipo no tiene, por perfil.
+  honorarioExternoPorPerfilCLP: z.number().optional(),
   contingenciaPct: z.number().default(0.1),
   costoFinancieroGarantiaPct: z.number().default(0.02),
   margenMinimoPct: z.number(),

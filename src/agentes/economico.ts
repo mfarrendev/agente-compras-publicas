@@ -72,6 +72,15 @@ export function costear(compra: Compra, req: Requisitos, datos: Datos, ev: Evalu
   const tarifaPrep = costos.tarifasHora[costos.rolPreparacion] ?? 0;
   detalle.push({ concepto: "Preparación de la postulación", horas: costos.horasPreparacionPostulacion, montoCLP: Math.round(costos.horasPreparacionPostulacion * tarifaPrep) });
   if (costos.costosDirectosCLP) detalle.push({ concepto: "Costos directos", horas: null, montoCLP: costos.costosDirectosCLP });
+  // Un perfil que nadie del equipo cubre se ofrece con un experto externo, y eso cuesta.
+  const sinCubrir = ev?.verificaciones.filter((v) => v.requisito.startsWith("Perfil:") && v.estado === "no_cumple") ?? [];
+  for (const v of sinCubrir) {
+    if (costos.honorarioExternoPorPerfilCLP === undefined) {
+      advertencias.push(`El costo no incluye al experto externo para "${v.requisito.slice(8)}": falta honorarioExternoPorPerfilCLP en costos.yaml.`);
+    } else {
+      detalle.push({ concepto: `Experto externo: ${v.requisito.slice(8)}`, horas: null, montoCLP: costos.honorarioExternoPorPerfilCLP });
+    }
+  }
   const base = detalle.reduce((s, d) => s + d.montoCLP, 0);
   detalle.push({ concepto: `Contingencia (${Math.round(costos.contingenciaPct * 100)} %)`, horas: null, montoCLP: Math.round(base * costos.contingenciaPct) });
 

@@ -236,7 +236,7 @@ export function crearHerramientas(ctx: Contexto) {
   const resultadoLicitacion = betaZodTool({
     name: "resultado_licitacion",
     description:
-      "Trae el resultado de una licitación pasada: título, ofertas (cuántas, cuántas descalificadas, montos) y adjudicación (monto y proveedor). Los montos de OCDS son los que ofertaron los proveedores, normalmente netos.",
+      "Trae el resultado de una licitación pasada de Mercado Público, por su código (por ejemplo 1234-12-LE25; no sirve para los ids de historial_propio): título, ofertas (cuántas, cuántas descalificadas, montos) y adjudicación (monto y proveedor). Los montos de OCDS son los que ofertaron los proveedores, normalmente netos.",
     inputSchema: z.object({ codigo: z.string() }),
     run: registrar("resultado_licitacion", async ({ codigo }: { codigo: string }) => {
       if (!ctx.ocds) return sinRed();

@@ -86,13 +86,18 @@ export class FuenteComprasAgiles implements Fuente {
     });
     const navegador = await chromium.launch({ headless: true });
     try {
-      const ctx = await navegador.newContext({ locale: "es-CL" });
-      const pagina = await ctx.newPage();
-      let cabeceras: Record<string, string> | null = null;
-      pagina.on("request", (r) => {
-        if (!cabeceras && r.url().startsWith("https://api.buscador.mercadopublico.cl/compra-agil?")) cabeceras = r.headers();
+      // Con el agente de usuario por omisión del modo headless ("HeadlessChrome") el buscador
+      // no hace su consulta inicial (visto el 2026-10-20); con el de un Chrome de escritorio, sí.
+      const ctx = await navegador.newContext({
+        locale: "es-CL",
+        userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
       });
-      await pagina.goto("https://buscador.mercadopublico.cl/compra-agil", { waitUntil: "networkidle", timeout: 60_000 });
+      const pagina = await ctx.newPage();
+      const consulta = pagina
+        .waitForRequest((r) => r.url().startsWith("https://api.buscador.mercadopublico.cl/compra-agil?"), { timeout: 60_000 })
+        .catch(() => null);
+      await pagina.goto("https://buscador.mercadopublico.cl/compra-agil", { waitUntil: "domcontentloaded", timeout: 60_000 });
+      const cabeceras = (await consulta)?.headers() ?? null;
       if (!cabeceras) throw new Error("El buscador de Compras Ágiles no hizo su consulta inicial; puede haber cambiado.");
 
       const hoy = new Date();
