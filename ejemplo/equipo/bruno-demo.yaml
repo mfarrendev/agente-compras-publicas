@@ -1,0 +1,9 @@
+# Persona FICTICIA.
+id: bruno-demo
+nombre: Bruno Demo
+titulo: { nombre: Ingeniería Civil en Informática, area: informática, semestres: 12, obtenido: true }
+anosExperiencia: 6
+areasExperiencia: [inteligencia artificial, análisis de datos, automatización]
+horasDocencia: 160
+respaldos: { cv: true, titulo: true, certificadosDocencia: true }
+tarifaRol: consultor

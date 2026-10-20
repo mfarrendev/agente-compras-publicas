@@ -1,0 +1,13 @@
+{
+  "id": "LIC-DEMO-004",
+  "tipo": "licitacion",
+  "nombre": "Consultoría para diagnóstico y rediseño de procesos de atención ciudadana",
+  "descripcion": "Diagnóstico, rediseño de procesos y plan de implementación para la atención ciudadana.",
+  "organismo": "Corporación Ficticia de Desarrollo",
+  "presupuestoCLP": 18000000,
+  "presupuestoIncluyeImpuestos": true,
+  "cierre": "2030-11-20T15:00:00-03:00",
+  "cotizacionesRecibidas": null,
+  "url": null,
+  "fuente": "ejemplo"
+}

@@ -1,0 +1,56 @@
+{
+  "perfiles": [
+    {
+      "rol": "Coordinador académico",
+      "obligatorio": true,
+      "tituloAreas": [],
+      "semestresMinimos": null,
+      "tituloObtenidoExigido": false,
+      "gradoExigido": "magíster",
+      "anosExperienciaMinimos": 10,
+      "areasExperiencia": [
+        "transformación digital"
+      ],
+      "horasDocenciaMinimas": null,
+      "cita": "grado de magíster y 10 años de experiencia en transformación digital"
+    }
+  ],
+  "experienciaOferente": null,
+  "institucionales": [
+    {
+      "tipo": "universidad_acreditada",
+      "descripcion": "Universidad acreditada por 4 años o más",
+      "obligatorio": true,
+      "cita": "Podrán participar únicamente universidades acreditadas por la Comisión Nacional de Acreditación por al menos 4 años"
+    }
+  ],
+  "documentos": [],
+  "criterios": [
+    {
+      "nombre": "Precio",
+      "tipo": "precio",
+      "ponderacion": 30,
+      "cita": "Precio 30%"
+    },
+    {
+      "nombre": "Propuesta técnica",
+      "tipo": "propuesta_tecnica",
+      "ponderacion": 40,
+      "cita": "propuesta técnica 40%"
+    },
+    {
+      "nombre": "Equipo docente",
+      "tipo": "perfil_equipo",
+      "ponderacion": 30,
+      "cita": "equipo docente 30%"
+    }
+  ],
+  "servicio": {
+    "tipoEsfuerzo": "capacitacion",
+    "unidades": 120,
+    "modalidad": "mixta",
+    "plazoDias": 120
+  },
+  "garantiaCumplimientoPct": 5,
+  "presupuestoIncluyeImpuestos": true
+}

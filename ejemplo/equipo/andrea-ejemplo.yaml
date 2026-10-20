@@ -1,0 +1,11 @@
+# Persona FICTICIA.
+id: andrea-ejemplo
+nombre: Andrea Ejemplo
+titulo: { nombre: Ingeniería Civil Industrial, area: ingeniería, semestres: 12, obtenido: true }
+grados:
+  - { nombre: Magíster en Gestión de Operaciones, area: gestión, semestres: 4, obtenido: true }
+anosExperiencia: 12
+areasExperiencia: [gestión de procesos, transformación digital, capacitación]
+horasDocencia: 800
+respaldos: { cv: true, titulo: true, certificadosDocencia: true }
+tarifaRol: senior

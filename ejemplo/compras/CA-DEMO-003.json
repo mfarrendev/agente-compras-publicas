@@ -1,0 +1,13 @@
+{
+  "id": "CA-DEMO-003",
+  "tipo": "compra_agil",
+  "nombre": "Taller de cocina saludable para adultos mayores",
+  "descripcion": "Seis sesiones prácticas de cocina para el programa de adulto mayor.",
+  "organismo": "Municipalidad de Villa Ejemplo",
+  "presupuestoCLP": 1200000,
+  "presupuestoIncluyeImpuestos": true,
+  "cierre": "2030-12-01T15:00:00-03:00",
+  "cotizacionesRecibidas": 2,
+  "url": null,
+  "fuente": "ejemplo"
+}

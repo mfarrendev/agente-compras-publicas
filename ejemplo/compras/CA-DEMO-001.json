@@ -1,0 +1,13 @@
+{
+  "id": "CA-DEMO-001",
+  "tipo": "compra_agil",
+  "nombre": "Curso de inteligencia artificial aplicada para funcionarios",
+  "descripcion": "Capacitación de 24 horas en herramientas de inteligencia artificial para el trabajo administrativo.",
+  "organismo": "Municipalidad de Villa Ejemplo",
+  "presupuestoCLP": 3500000,
+  "presupuestoIncluyeImpuestos": true,
+  "cierre": "2030-12-15T15:00:00-03:00",
+  "cotizacionesRecibidas": 3,
+  "url": null,
+  "fuente": "ejemplo"
+}

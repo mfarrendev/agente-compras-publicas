@@ -1,0 +1,13 @@
+{
+  "id": "CA-DEMO-005",
+  "tipo": "compra_agil",
+  "nombre": "Servicio de coffee break para jornada de capacitación",
+  "descripcion": "Café, jugos y bocadillos para 40 personas.",
+  "organismo": "Servicio Regional Demo",
+  "presupuestoCLP": 600000,
+  "presupuestoIncluyeImpuestos": true,
+  "cierre": "2030-12-10T15:00:00-03:00",
+  "cotizacionesRecibidas": 9,
+  "url": null,
+  "fuente": "ejemplo"
+}

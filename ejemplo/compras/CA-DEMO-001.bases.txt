@@ -1,0 +1,16 @@
+COMPRA ÁGIL CA-DEMO-001 (DOCUMENTO FICTICIO PARA LA DEMOSTRACIÓN)
+Municipalidad de Villa Ejemplo
+
+1. Objeto. Se requiere contratar un curso de inteligencia artificial aplicada para funcionarios municipales, de 24 horas cronológicas, en modalidad presencial, a realizarse dentro de 30 días corridos desde la emisión de la orden de compra.
+
+2. Relator. El relator deberá contar con título profesional de ingeniería o informática de al menos 8 semestres y una experiencia mínima de 3 años en inteligencia artificial, además de 100 horas de docencia acreditables. Las ofertas que no acrediten el perfil del relator serán declaradas inadmisibles.
+
+3. Experiencia del oferente. El oferente deberá acreditar al menos 2 servicios de capacitación en los últimos 3 años, mediante órdenes de compra o facturas.
+
+4. Requisitos. El proveedor debe estar inscrito y hábil en el Registro de Proveedores del Estado.
+
+5. Documentos. Adjuntar la cotización firmada y la declaración jurada de no tener conflicto de interés.
+
+6. Evaluación. Precio 60%, experiencia del oferente 20%, perfil del relator 20%.
+
+7. El presupuesto disponible es de $3.500.000, impuestos incluidos.

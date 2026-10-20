@@ -1,0 +1,36 @@
+# Perfil de una organización FICTICIA. Copia esta carpeta fuera del repositorio (o a datos/,
+# que está en .gitignore) y reemplaza cada valor por los tuyos.
+nombre: Consultora Ejemplo SpA
+rut: 99.999.999-9 # ficticio
+tamano: pequena
+inscritaRegistroProveedores: true
+selloEmpresaMujer: false
+sancionesUltimos24Meses: 0
+tiposInstitucion: [] # p. ej. otec_norma_2728, universidad_acreditada
+facturaExenta: false
+descripcion: >
+  Consultora pequeña que dicta cursos y talleres de inteligencia artificial aplicada y de
+  transformación digital para equipos públicos, y hace consultorías de diagnóstico y
+  rediseño de procesos.
+rubros:
+  - Capacitación en inteligencia artificial y herramientas digitales
+  - Consultoría en gestión de procesos y transformación digital
+palabrasClave:
+  - capacitacion
+  - curso
+  - taller
+  - diplomado
+  - inteligencia artificial
+  - transformacion digital
+  - consultoria
+  - diagnostico
+  - procesos
+exclusiones:
+  - coffee break
+  - arriendo
+  - licencias
+  - insumos
+  - alimentacion
+montoMinimo: 500000
+montoMaximo: 60000000
+aceptaExpertosExternos: true

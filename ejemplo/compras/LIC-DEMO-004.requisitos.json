@@ -1,0 +1,126 @@
+{
+  "perfiles": [
+    {
+      "rol": "Jefe de proyecto",
+      "obligatorio": true,
+      "tituloAreas": [
+        "ingeniería"
+      ],
+      "semestresMinimos": null,
+      "tituloObtenidoExigido": true,
+      "gradoExigido": "magíster",
+      "anosExperienciaMinimos": 8,
+      "areasExperiencia": [
+        "gestión de procesos"
+      ],
+      "horasDocenciaMinimas": null,
+      "cita": "Jefe de proyecto: título profesional de ingeniería, grado de magíster y 8 años de experiencia en gestión de procesos"
+    },
+    {
+      "rol": "Analista de datos",
+      "obligatorio": true,
+      "tituloAreas": [
+        "informática"
+      ],
+      "semestresMinimos": null,
+      "tituloObtenidoExigido": true,
+      "gradoExigido": null,
+      "anosExperienciaMinimos": 3,
+      "areasExperiencia": [
+        "análisis de datos"
+      ],
+      "horasDocenciaMinimas": null,
+      "cita": "Analista de datos: título profesional de informática con 3 años de experiencia en análisis de datos"
+    },
+    {
+      "rol": "Especialista en experiencia usuaria",
+      "obligatorio": true,
+      "tituloAreas": [
+        "diseño"
+      ],
+      "semestresMinimos": null,
+      "tituloObtenidoExigido": true,
+      "gradoExigido": null,
+      "anosExperienciaMinimos": 3,
+      "areasExperiencia": [
+        "experiencia usuaria"
+      ],
+      "horasDocenciaMinimas": null,
+      "cita": "Especialista en experiencia usuaria: título profesional de diseño con 3 años de experiencia en experiencia usuaria"
+    }
+  ],
+  "experienciaOferente": {
+    "obligatorio": false,
+    "serviciosMinimos": 3,
+    "anosHaciaAtras": 5,
+    "areas": [
+      "consultoría"
+    ],
+    "respaldosAceptados": [
+      "contrato",
+      "orden_de_compra"
+    ],
+    "cita": "al menos 3 consultorías en los últimos 5 años, acreditadas con contratos u órdenes de compra"
+  },
+  "institucionales": [
+    {
+      "tipo": "registro_proveedores",
+      "descripcion": "Inscrito en el Registro de Proveedores",
+      "obligatorio": true,
+      "cita": "Estar inscrito en el Registro de Proveedores"
+    },
+    {
+      "tipo": "garantia_fiel_cumplimiento",
+      "descripcion": "Garantía de fiel cumplimiento del 5 %",
+      "obligatorio": true,
+      "cita": "garantía de fiel cumplimiento del 5% del valor del contrato"
+    }
+  ],
+  "documentos": [
+    {
+      "nombre": "Propuesta técnica",
+      "obligatorio": true,
+      "cita": "propuesta de rediseño"
+    }
+  ],
+  "criterios": [
+    {
+      "nombre": "Precio",
+      "tipo": "precio",
+      "ponderacion": 40,
+      "cita": "Precio 40%"
+    },
+    {
+      "nombre": "Propuesta técnica",
+      "tipo": "propuesta_tecnica",
+      "ponderacion": 30,
+      "cita": "propuesta técnica 30%"
+    },
+    {
+      "nombre": "Experiencia",
+      "tipo": "experiencia_oferente",
+      "ponderacion": 15,
+      "cita": "experiencia 15%"
+    },
+    {
+      "nombre": "Equipo de trabajo",
+      "tipo": "perfil_equipo",
+      "ponderacion": 10,
+      "cita": "equipo de trabajo 10%"
+    },
+    {
+      "nombre": "Sello Empresa Mujer",
+      "tipo": "sello_empresa_mujer",
+      "ponderacion": 5,
+      "cita": "Sello Empresa Mujer 5%"
+    }
+  ],
+  "servicio": {
+    "tipoEsfuerzo": "consultoria",
+    "unidades": 3,
+    "modalidad": null,
+    "plazoDias": 90
+  },
+  "garantiaCumplimientoPct": 5,
+  "presupuestoIncluyeImpuestos": true
+}

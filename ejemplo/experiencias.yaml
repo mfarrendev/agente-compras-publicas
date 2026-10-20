@@ -1,0 +1,37 @@
+# Experiencias FICTICIAS. Solo cuenta lo que tiene respaldo: orden de compra, factura,
+# contrato, carta del mandante, certificado o recepción conforme.
+- id: exp-01
+  cliente: Municipalidad de Villa Ejemplo
+  servicio: Taller de herramientas de inteligencia artificial para atención de público
+  tipo: capacitacion
+  areas: [capacitación, inteligencia artificial]
+  inicio: "2025-04-01"
+  termino: "2025-05-15"
+  montoCLP: 2400000
+  respaldos: [orden_de_compra, factura]
+- id: exp-02
+  cliente: Servicio Regional Demo
+  servicio: Curso de análisis de datos con hojas de cálculo e IA
+  tipo: capacitacion
+  areas: [capacitación, análisis de datos]
+  inicio: "2025-09-01"
+  termino: "2025-10-30"
+  montoCLP: 3100000
+  respaldos: [orden_de_compra, recepcion_conforme]
+- id: exp-03
+  cliente: Corporación Ficticia de Desarrollo
+  servicio: Consultoría de diagnóstico y rediseño de procesos de compras
+  tipo: consultoria
+  areas: [consultoría, gestión de procesos]
+  inicio: "2024-03-01"
+  termino: "2024-08-31"
+  montoCLP: 9800000
+  respaldos: [contrato, factura]
+- id: exp-04
+  cliente: Fundación Imaginaria
+  servicio: Consultoría de transformación digital de procesos internos
+  tipo: consultoria
+  areas: [consultoría, transformación digital]
+  inicio: "2025-01-10"
+  termino: "2025-06-30"
+  respaldos: [certificado]

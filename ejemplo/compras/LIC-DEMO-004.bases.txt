@@ -1,0 +1,17 @@
+LICITACIÓN PÚBLICA LIC-DEMO-004 (DOCUMENTO FICTICIO PARA LA DEMOSTRACIÓN)
+Corporación Ficticia de Desarrollo
+
+1. Objeto. Consultoría para el diagnóstico y rediseño de los procesos de atención ciudadana, con tres entregables: diagnóstico, propuesta de rediseño y plan de implementación, en un plazo de 90 días.
+
+2. Equipo mínimo. Las ofertas que no presenten el equipo mínimo serán declaradas inadmisibles.
+a) Jefe de proyecto: título profesional de ingeniería, grado de magíster y 8 años de experiencia en gestión de procesos.
+b) Analista de datos: título profesional de informática con 3 años de experiencia en análisis de datos.
+c) Especialista en experiencia usuaria: título profesional de diseño con 3 años de experiencia en experiencia usuaria.
+
+3. Experiencia del oferente. Se evaluará la experiencia en al menos 3 consultorías en los últimos 5 años, acreditadas con contratos u órdenes de compra.
+
+4. Requisitos. Estar inscrito en el Registro de Proveedores. El adjudicado entregará una garantía de fiel cumplimiento del 5% del valor del contrato.
+
+5. Evaluación. Precio 40%, propuesta técnica 30%, experiencia 15%, equipo de trabajo 10%, Sello Empresa Mujer 5%.
+
+6. El presupuesto máximo es de $18.000.000, impuestos incluidos.

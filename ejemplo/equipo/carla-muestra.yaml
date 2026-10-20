@@ -1,0 +1,10 @@
+# Persona FICTICIA. Tiene las horas de docencia pero aún no los certificados: el agente
+# lo marca como "parcial" y pide conseguirlos antes de postular.
+id: carla-muestra
+nombre: Carla Muestra
+titulo: { nombre: Psicología, area: psicología, semestres: 10, obtenido: true }
+anosExperiencia: 4
+areasExperiencia: [diseño instruccional, capacitación, gestión del cambio]
+horasDocencia: 300
+respaldos: { cv: true, titulo: true, certificadosDocencia: false }
+tarifaRol: coordinacion

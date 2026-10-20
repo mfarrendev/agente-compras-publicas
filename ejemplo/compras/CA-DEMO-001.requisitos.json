@@ -1,0 +1,82 @@
+{
+  "perfiles": [
+    {
+      "rol": "Relator",
+      "obligatorio": true,
+      "tituloAreas": [
+        "ingeniería",
+        "informática"
+      ],
+      "semestresMinimos": 8,
+      "tituloObtenidoExigido": true,
+      "gradoExigido": null,
+      "anosExperienciaMinimos": 3,
+      "areasExperiencia": [
+        "inteligencia artificial"
+      ],
+      "horasDocenciaMinimas": 100,
+      "cita": "título profesional de ingeniería o informática de al menos 8 semestres"
+    }
+  ],
+  "experienciaOferente": {
+    "obligatorio": false,
+    "serviciosMinimos": 2,
+    "anosHaciaAtras": 3,
+    "areas": [
+      "capacitación"
+    ],
+    "respaldosAceptados": [
+      "orden_de_compra",
+      "factura"
+    ],
+    "cita": "al menos 2 servicios de capacitación en los últimos 3 años"
+  },
+  "institucionales": [
+    {
+      "tipo": "registro_proveedores",
+      "descripcion": "Inscrito y hábil en el Registro de Proveedores",
+      "obligatorio": true,
+      "cita": "inscrito y hábil en el Registro de Proveedores del Estado"
+    }
+  ],
+  "documentos": [
+    {
+      "nombre": "Cotización firmada",
+      "obligatorio": true,
+      "cita": "Adjuntar la cotización firmada"
+    },
+    {
+      "nombre": "Declaración jurada de conflicto de interés",
+      "obligatorio": true,
+      "cita": "declaración jurada de no tener conflicto de interés"
+    }
+  ],
+  "criterios": [
+    {
+      "nombre": "Precio",
+      "tipo": "precio",
+      "ponderacion": 60,
+      "cita": "Precio 60%"
+    },
+    {
+      "nombre": "Experiencia del oferente",
+      "tipo": "experiencia_oferente",
+      "ponderacion": 20,
+      "cita": "experiencia del oferente 20%"
+    },
+    {
+      "nombre": "Perfil del relator",
+      "tipo": "perfil_equipo",
+      "ponderacion": 20,
+      "cita": "perfil del relator 20%"
+    }
+  ],
+  "servicio": {
+    "tipoEsfuerzo": "capacitacion",
+    "unidades": 24,
+    "modalidad": "presencial",
+    "plazoDias": 30
+  },
+  "garantiaCumplimientoPct": null,
+  "presupuestoIncluyeImpuestos": true
+}

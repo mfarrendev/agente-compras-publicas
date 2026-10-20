@@ -1,0 +1,13 @@
+{
+  "id": "LIC-DEMO-002",
+  "tipo": "licitacion",
+  "nombre": "Diplomado en transformación digital para directivos",
+  "descripcion": "Programa de formación de 120 horas para jefaturas del servicio.",
+  "organismo": "Servicio Regional Demo",
+  "presupuestoCLP": 25000000,
+  "presupuestoIncluyeImpuestos": true,
+  "cierre": "2030-11-30T15:00:00-03:00",
+  "cotizacionesRecibidas": null,
+  "url": null,
+  "fuente": "ejemplo"
+}

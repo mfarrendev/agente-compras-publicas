@@ -1,0 +1,22 @@
+# Estructura de costos FICTICIA. Valores netos, en pesos chilenos.
+tarifasHora:
+  senior: 35000
+  consultor: 25000
+  coordinacion: 18000
+# Horas de cada rol por unidad de servicio. Una hora lectiva de un curso no es solo la hora
+# en sala: incluye preparar material y coordinar.
+modelosEsfuerzo:
+  capacitacion:
+    unidad: hora lectiva
+    horasPorUnidad: { senior: 1, consultor: 0.5, coordinacion: 0.25 }
+  consultoria:
+    unidad: entregable
+    horasPorUnidad: { senior: 24, consultor: 40, coordinacion: 12 }
+horasPreparacionPostulacion: 10
+rolPreparacion: coordinacion
+costosDirectosCLP: 100000
+contingenciaPct: 0.10
+costoFinancieroGarantiaPct: 0.02
+margenMinimoPct: 0.15
+margenObjetivoPct: 0.30
+ivaPct: 0.19
