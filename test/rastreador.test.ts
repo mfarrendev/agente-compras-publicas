@@ -1,4 +1,4 @@
-// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas,
+// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas en esa fecha,
 // el arnés exige que corran las 20). Cada mutación hace caer 1 de las 5 pruebas de este archivo:
 // exclusiones comparadas sin normalizar, sin el chequeo de cierre, y el prefiltro dejando pasar
 // lo que no nombra palabras clave (esta última no caía hasta agregar su prueba).

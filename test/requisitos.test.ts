@@ -1,4 +1,4 @@
-// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas,
+// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas en esa fecha,
 // el arnés exige que corran las 20). De las 10 pruebas de este archivo caen:
 // - sin el chequeo de semestres: 1.            - sin exigir título obtenido: 1.
 // - respaldo faltante contado como "cumple": 1. - sin la ventana de años: 1.

@@ -91,6 +91,8 @@ export const Historial = z.array(
   z.object({
     id: z.string(),
     tipo: z.string(),
+    nombre: z.string().optional(),
+    organismo: z.string().optional(),
     presupuestoCLP: z.number(),
     adjudicadoCLP: z.number().nullable(),
     cotizaciones: z.number().nullable(),

@@ -1,4 +1,4 @@
-// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas,
+// Medición (2026-10-20): se puso cada defecto a mano y se corrió la suite completa (20 pruebas en esa fecha,
 // el arnés exige que corran las 20). De las 5 pruebas de este archivo caen:
 // - topeNeto sin descontar el IVA: 2.
 // - la mediana del historial reemplazada por el mínimo: 1.

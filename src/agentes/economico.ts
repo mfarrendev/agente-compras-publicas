@@ -42,7 +42,14 @@ function puntajeNoPrecio(req: Requisitos, ev: Evaluacion | null, datos: Datos): 
   return total;
 }
 
-export function costear(compra: Compra, req: Requisitos, datos: Datos, ev: Evaluacion | null): Oferta {
+// `competidor` permite que el agente reemplace la estimación por un precio que investigó en
+// licitaciones anteriores. La herramienta del agente exige que cite de dónde lo sacó.
+export interface Competidor {
+  precioNetoCLP: number;
+  evidencia: string;
+}
+
+export function costear(compra: Compra, req: Requisitos, datos: Datos, ev: Evaluacion | null, investigado?: Competidor): Oferta {
   const { costos, organizacion: org } = datos;
   const advertencias: string[] = [];
   const detalle: Oferta["costoDetalle"] = [];
@@ -75,7 +82,7 @@ export function costear(compra: Compra, req: Requisitos, datos: Datos, ev: Evalu
 
   const pesoPrecio = req.criterios.find((c) => c.tipo === "precio")?.ponderacion ?? 0;
   const ratio = ratioCompetidor(datos, compra.tipo);
-  const competidor = tope !== null ? Math.round(tope * ratio) : null;
+  const competidor = investigado ? Math.round(investigado.precioNetoCLP) : tope !== null ? Math.round(tope * ratio) : null;
   const noPrecio = puntajeNoPrecio(req, ev, datos);
   const factorImpuesto = org.facturaExenta ? 1 : 1 + costos.ivaPct;
 
@@ -121,7 +128,9 @@ export function costear(compra: Compra, req: Requisitos, datos: Datos, ev: Evalu
   if (recomendado && recomendado.margenPct < costos.margenObjetivoPct) {
     advertencias.push(`El precio recomendado deja ${Math.round(recomendado.margenPct * 100)} % de margen, bajo el objetivo de ${Math.round(costos.margenObjetivoPct * 100)} %.`);
   }
-  if (datos.historial.length === 0) {
+  if (investigado) {
+    advertencias.push(`Competidor investigado por el agente: ${investigado.evidencia}`);
+  } else if (datos.historial.length === 0) {
     advertencias.push(`Sin historial de adjudicaciones: el competidor se estima en ${RATIO_COMPETIDOR_SIN_HISTORIAL * 100} % del tope.`);
   }
   return {

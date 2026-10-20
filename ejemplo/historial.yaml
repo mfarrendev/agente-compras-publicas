@@ -1,8 +1,8 @@
 # Resultados FICTICIOS de compras pasadas parecidas: a cuánto se adjudicó frente al
 # presupuesto. Con esto el agente estima el precio del competidor. Sin historial asume 85 %.
-- { id: CA-HIST-01, tipo: compra_agil, presupuestoCLP: 3000000, adjudicadoCLP: 2350000, cotizaciones: 5 }
-- { id: CA-HIST-02, tipo: compra_agil, presupuestoCLP: 4000000, adjudicadoCLP: 3280000, cotizaciones: 4 }
-- { id: CA-HIST-03, tipo: compra_agil, presupuestoCLP: 2500000, adjudicadoCLP: 2250000, cotizaciones: 3 }
-- { id: LIC-HIST-01, tipo: licitacion, presupuestoCLP: 20000000, adjudicadoCLP: 15200000, cotizaciones: 7 }
-- { id: LIC-HIST-02, tipo: licitacion, presupuestoCLP: 15000000, adjudicadoCLP: 11000000, cotizaciones: 6 }
-- { id: LIC-HIST-03, tipo: licitacion, presupuestoCLP: 12000000, adjudicadoCLP: null, cotizaciones: 0 }
+- { id: CA-HIST-01, tipo: compra_agil, nombre: Taller de planillas de cálculo, organismo: Municipalidad de Villa Ejemplo, presupuestoCLP: 3000000, adjudicadoCLP: 2350000, cotizaciones: 5 }
+- { id: CA-HIST-02, tipo: compra_agil, nombre: Curso de herramientas digitales, organismo: Servicio Regional Demo, presupuestoCLP: 4000000, adjudicadoCLP: 3280000, cotizaciones: 4 }
+- { id: CA-HIST-03, tipo: compra_agil, nombre: Capacitación en inteligencia artificial, organismo: Municipalidad de Villa Ejemplo, presupuestoCLP: 2500000, adjudicadoCLP: 2250000, cotizaciones: 3 }
+- { id: LIC-HIST-01, tipo: licitacion, nombre: Consultoría de procesos, organismo: Corporación Ficticia de Desarrollo, presupuestoCLP: 20000000, adjudicadoCLP: 15200000, cotizaciones: 7 }
+- { id: LIC-HIST-02, tipo: licitacion, nombre: Diagnóstico organizacional, organismo: Servicio Regional Demo, presupuestoCLP: 15000000, adjudicadoCLP: 11000000, cotizaciones: 6 }
+- { id: LIC-HIST-03, tipo: licitacion, nombre: Rediseño de atención ciudadana, organismo: Corporación Ficticia de Desarrollo, presupuestoCLP: 12000000, adjudicadoCLP: null, cotizaciones: 0 }

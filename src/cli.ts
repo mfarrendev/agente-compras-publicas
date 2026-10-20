@@ -4,11 +4,14 @@
 //   npm run agente -- evaluar <id>     requisitos y veredicto de una compra
 //   npm run agente -- costear <id>     oferta económica de una compra
 //   npm run agente -- armar <id>       carpeta de postulación (borrador)
-//   npm run agente -- todo             todo lo anterior para las compras que calzan
+//   npm run agente -- estudiar <id>    el agente (IA con herramientas) estudia la compra entera
+//   npm run agente -- todo             todo lo anterior para las compras que calzan; con
+//                                      ANTHROPIC_API_KEY usa el agente, sin ella el flujo simulado
 //
 // Opciones: --datos <carpeta> (por defecto ejemplo/), --salida <carpeta> (por defecto salida/),
 //           --simulado (sin IA ni costo), --rehacer (no reutilizar etapas guardadas),
-//           --umbral <0-100> (pertinencia mínima, por defecto 60).
+//           --umbral <0-100> (pertinencia mínima, por defecto 60),
+//           --sin-red (el agente no consulta los datos abiertos de Mercado Público).
 import { join } from "node:path";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { cargarDatos, type Datos } from "./datos.js";
@@ -21,6 +24,8 @@ import { evaluarPertinencia } from "./agentes/pertinencia.js";
 import { extraerRequisitos, verificar } from "./agentes/requisitos.js";
 import { costear } from "./agentes/economico.js";
 import { armar } from "./agentes/postulacion.js";
+import { correrAgente, type ResultadoAgente } from "./agente/agente.js";
+import { OCDS } from "./fuentes/ocds.js";
 import { Compra, type Evaluacion, type Oferta, type Requisitos } from "./tipos.js";
 
 function opcion(nombre: string, porDefecto: string): string {
@@ -82,6 +87,31 @@ function oferta(c: Compra, req: Requisitos, ev: Evaluacion): Oferta {
   return o;
 }
 
+// El agente es una sola etapa guardada: volver a correr reutiliza su resultado sin pagar tokens.
+async function estudiar(c: Compra): Promise<ResultadoAgente> {
+  const r = await estado.paso(c.id, "3-agente", () => {
+    console.log(`${c.id}: el agente está estudiando la compra`);
+    return correrAgente(c, datos, {
+      ocds: bandera("sin-red") ? null : new OCDS(join(opcion("salida", "salida"), ".cache", "ocds")),
+      alAvanzar: (l) => console.log(l),
+    });
+  });
+  estado.escribir(c.id, "3-evaluacion.json", JSON.stringify(r.evaluacion, null, 2));
+  if (r.oferta) estado.escribir(c.id, "4-oferta.json", JSON.stringify(r.oferta, null, 2));
+  estado.escribir(c.id, "informe-agente.md", informeMd(c, r));
+  return r;
+}
+
+function informeMd(c: Compra, r: ResultadoAgente): string {
+  const l = [`# Informe del agente: ${c.id}`, "", `Veredicto (verificación determinista): ${r.evaluacion.veredicto}`, "", r.informe.resumen, ""];
+  if (r.informe.riesgosAdicionales.length) l.push("## Riesgos que vio al leer", "", ...r.informe.riesgosAdicionales.map((x) => `- ${x}`), "");
+  if (r.informe.preguntasParaRevisar.length) l.push("## Para revisar a mano", "", ...r.informe.preguntasParaRevisar.map((x) => `- ${x}`), "");
+  if (r.citasNoEncontradas.length) l.push("## Citas que no aparecen literales en las bases", "", ...r.citasNoEncontradas.map((x) => `- ${x}`), "");
+  l.push(`## Cómo trabajó (${r.iteraciones} vueltas, ${r.bitacora.length} herramientas)`, "");
+  l.push(...r.bitacora.map((b, i) => `${i + 1}. ${b.herramienta}${b.error ? " (rechazada)" : ""} ${JSON.stringify(b.entrada).slice(0, 140)}`));
+  return l.join("\n") + "\n";
+}
+
 const clp = (n: number | null) => (n === null ? "sin dato" : `$ ${Math.round(n).toLocaleString("es-CL")}`);
 
 async function main(datos: Datos) {
@@ -112,6 +142,18 @@ async function main(datos: Datos) {
       console.log(`  carpeta: ${archivos.length} archivos en ${estado.dir(c.id)}`);
       return;
     }
+    case "estudiar": {
+      if (simulado) throw new Error("El agente necesita ANTHROPIC_API_KEY. Sin ella, usa evaluar, costear y armar (flujo simulado).");
+      if (!idArg) throw new Error("Uso: npm run agente -- estudiar <id>");
+      const c = await compraPorId(idArg);
+      const r = await estudiar(c);
+      console.log(`${c.id}: ${r.evaluacion.veredicto}. ${r.informe.resumen}`);
+      if (r.oferta) {
+        await armar(c, r.requisitos, r.evaluacion, r.oferta, datos, estado, simulado);
+        console.log(`Precio recomendado ${clp(r.oferta.recomendado?.precioNetoCLP ?? null)} neto. Carpeta en ${estado.dir(c.id)}`);
+      }
+      return;
+    }
     case "todo": {
       const r = await rastrear(fuentes(), datos.organizacion);
       const pasan = r.filter((x) => x.pasa);
@@ -122,12 +164,20 @@ async function main(datos: Datos) {
           console.log(`- ${c.id} no calza (${p.puntaje}/100): ${p.motivo}`);
           continue;
         }
-        const { req, ev } = await evaluar(c);
+        let req: Requisitos, ev: Evaluacion, o: Oferta;
+        if (simulado) {
+          ({ req, ev } = await evaluar(c));
+          if (ev.veredicto !== "no_postulable") o = oferta(c, req, ev);
+        } else {
+          const r = await estudiar(c);
+          ({ requisitos: req, evaluacion: ev } = r);
+          if (r.oferta) o = r.oferta;
+        }
         if (ev.veredicto === "no_postulable") {
           console.log(`- ${c.id} calza (${p.puntaje}/100) pero NO es postulable: ${ev.riesgos[0] ?? ""}`);
           continue;
         }
-        const o = oferta(c, req, ev);
+        o ??= oferta(c, req, ev);
         await armar(c, req, ev, o, datos, estado, simulado);
         console.log(
           `- ${c.id} ${ev.veredicto === "postulable" ? "POSTULABLE" : "POSTULABLE CON BRECHAS"} (${p.puntaje}/100). ` +
@@ -138,7 +188,7 @@ async function main(datos: Datos) {
       return;
     }
     default:
-      console.log("Comandos: rastrear | evaluar <id> | costear <id> | armar <id> | todo. Ver README.md.");
+      console.log("Comandos: rastrear | evaluar <id> | costear <id> | armar <id> | estudiar <id> | todo. Ver README.md.");
   }
 }
 
